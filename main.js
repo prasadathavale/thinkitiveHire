@@ -1,36 +1,37 @@
  // Get the necessary elements
- const previewButton = document.getElementById("preview-button");
- const modalOverlay = document.getElementById("modal-overlay");
- const continueBtn = document.querySelector('.continue-cta')
-//  const visibleOn = document.getElementById('visibleOn').disabled = 'true'; 
+//  const previewButton = document.getElementById("preview-button");
+const modalOverlay = document.getElementById("modal-overlay");
+const continueBtn = document.querySelector('.cta')
+const visibleOn = document.getElementById('visibleOn');
 const cancelButton = document.getElementById("cancel-button"); 
  
  // Function to show the modal
- function showModal() {
-   modalOverlay.style.display = "flex";
- }
+//  function showModal() {
+//    console.log("Modal");
+//    modalOverlay.style.display = "block";
+//  }
 
  // Function to hide the modal
- function hideModal() {
-   modalOverlay.style.display = "none";
- }
+//  function hideModal() {
+//    modalOverlay.style.display = "none";
+//  }
 
  // Event listener for the preview button click
- previewButton.addEventListener("click", showModal);
+//  previewButton.addEventListener("click", showModal);
 
  // Event listener for clicking outside the modal to close it
- modalOverlay.addEventListener("click", function (event) {
-   if (event.target === modalOverlay) {
-     hideModal();
-   }
- });
-
- 
- cancelButton.addEventListener("click", hideModal);
+//  modalOverlay.addEventListener("click", function (event) {
+//    if (event.target === modalOverlay) {
+//      hideModal();
+//    }
+//  });
 
 
+//  cancelButton.addEventListener("click", hideModal);
 
- const languageContent = document.querySelectorAll(".language-content");
+
+
+const languageContent = document.querySelectorAll(".chip");
  const selectedLanguages = [];
  const selectedLanguagesDiv =
    document.getElementById("selected-languages");
@@ -65,6 +66,7 @@ const cancelButton = document.getElementById("cancel-button");
      displaySelectedLanguages();
    }
    toggleContinueButton(selectedLanguages);
+  //  visibleOn
  });
 
  function displaySelectedLanguages() {
@@ -78,6 +80,13 @@ const cancelButton = document.getElementById("cancel-button");
  }
 
  function toggleContinueButton(selectedLanguages) {
-    selectedLanguages.length > 0 ?  continueBtn.classList.add('active') : continueBtn.classList.remove('active');
+   if (selectedLanguages.length > 0) {
+     console.log("Toggle continue button");
+     continueBtn.classList.add('active');
+     visibleOn.classList.add('visible');
+   } else {
+     continueBtn.classList.remove('active');
+     visibleOn.classList.remove('visible');
+   }
     // selectedLanguages.length === 0? visibleOn.disabled='true':visibleOn.disabled='false';
  }

@@ -63,7 +63,7 @@ html {
     font-weight: 700;
     font-size: 1.2rem;
     line-height: 2.0rem;
-        letter-spacing: -0.1px;
+    letter-spacing: -0.1px;
         color: #272d37;
 
 }
@@ -77,11 +77,14 @@ html {
     font-weight: 400;
     font-size: 1.2rem;
     line-height: 2.2rem;
-        letter-spacing: 0.8px;
+    letter-spacing: 0.8px;
         color: #272d37;
     padding: 7px 16px;
 }
 
+.rotate {
+    transform: rotate(180deg);
+}
 /* Downloads */
 .left .download {
     border: 1px solid rgba(0, 0, 0, 0.14);
@@ -97,7 +100,7 @@ html {
     font-style: normal;
     font-weight: 500;
     font-size: 1.3rem;
-        color: #939393;
+    color: #939393;
         line-height: 150%;
         margin: 0 19px 0 0;
 }
@@ -214,7 +217,7 @@ html {
     display: flex;
     height: 22.84px;
     background: #253858;
-        font-family: "Inter";
+    font-family: "Inter";
         font-style: normal;
         font-weight: 700;
         font-size: 10.259px;
@@ -236,7 +239,7 @@ html {
 .cv-content-heading ul li {
     font-family: "Inter";
     font-style: normal;
-        font-weight: 400;
+    font-weight: 400;
         font-size: 10.259px;
         line-height: 154.02%;
         letter-spacing: 0.08em;
@@ -247,7 +250,7 @@ html {
     text-align: start;
     padding-left: 24px;
     padding-top: 13.68px;
-        background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
         backdrop-filter: blur(10px);
 }
 
@@ -285,7 +288,7 @@ html {
     font-size: 18px;
     line-height: 18px;
     color: #545454;
-        margin-top: 24px;
+    margin-top: 24px;
 }
 
 .containers .content img {
@@ -307,14 +310,14 @@ html {
 .skill-heading {
     width: 100%;
     height: 19.84px;
-        background: #e4e4e4;
+    background: #e4e4e4;
         margin-top: 13.68px;
 }
 
 .skill-heading h6 {
     font-family: "Arial";
     font-weight: 700;
-        font-size: 8.54914px;
+    font-size: 8.54914px;
         line-height: 154.02%;
         letter-spacing: 0.12em;
         text-transform: uppercase;
@@ -329,7 +332,7 @@ html {
 .skill-paragraph p {
     height: 32px;
     font-family: "Inter";
-        font-style: normal;
+    font-style: normal;
         font-weight: 400;
         font-size: 10.259px;
         line-height: 154.02%;
@@ -342,19 +345,19 @@ html {
 .professional-exp-box {
     height: 45.68px;
     background: #e4e4e4;
-        margin-top: 13.68px;
+    margin-top: 13.68px;
 }
 
 .professional-exp-content {
     display: flex;
     justify-content: space-between;
-        padding: 6.84px 13.68px;
+    padding: 6.84px 13.68px;
 }
 
 .professional-exp-content p {
     font-family: "Inter";
     font-weight: 500;
-        font-size: 10.259px;
+    font-size: 10.259px;
         line-height: 154.02%;
         letter-spacing: 0.08em;
         text-transform: capitalize;
@@ -364,7 +367,7 @@ html {
 .professional-exp-box-1 {
     /* height: 64px; */
     margin-top: 13.68px;
-        margin-left: 13.68px;
+    margin-left: 13.68px;
         font-family: "Inter";
         font-weight: 600;
         font-size: 10.259px;
@@ -376,7 +379,7 @@ html {
 .professional-exp-box-2 {
     margin-top: 13.68px;
     margin-left: 13.68px;
-        font-family: "Inter";
+    font-family: "Inter";
         font-weight: 600;
         font-size: 10.259px;
         line-height: 154.02%;
@@ -392,7 +395,7 @@ html {
 .backgroundEffect {
     position: fixed;
     top: 0;
-        left: 0;
+    left: 0;
         width: 100%;
         height: 100%;
         background-color: rgba(255, 255, 255, 0.6);
@@ -423,7 +426,7 @@ html {
 
     font-weight: 700;
     font-size: 1.4rem;
-        line-height: 1.9rem;
+    line-height: 1.9rem;
         letter-spacing: 0.04em;
         color: #101010;
     }
@@ -432,7 +435,7 @@ html {
     width: 100%;
     height: 76px;
     background: #ffffff;
-        border: 1px solid #ececec;
+    border: 1px solid #ececec;
         border-radius: 4px;
         padding: 14px;
         margin: 12px 0 0 0;
@@ -484,7 +487,7 @@ html {
     width: 100%;
     height: 36px;
     background: #cecece;
-        border-radius: 8px;
+    border-radius: 8px;
         border: none;
         font-weight: 700;
         font-size: 1.4rem;
@@ -551,7 +554,7 @@ html {
     font-weight: 600;
     font-size: 1.8rem;
     line-height: 29px;
-        color: #2C2C2C;
+    color: #2C2C2C;
         margin: 12px 0 0 0;
     }
     
@@ -561,7 +564,7 @@ html {
         line-height: 18px;
     letter-spacing: 0.5px;
     color: rgba(0, 0, 0, 0.6);
-        margin-top: 8px;
+    margin-top: 8px;
         margin-bottom: 0;
     }
     
@@ -601,7 +604,14 @@ html {
         background: #DADADA;
         border-radius: 8px;
         border: none;
-    }
+        cursor: pointer;
+        }
+        
+        /*MODAL API WIDTH*/
+        
+        .modal-input-value {
+            width: 90%;
+}
 /* For mobile veiw  (MEDIA QUERIES)*/
 
 @media only screen and (min-width: 768px) {
@@ -640,6 +650,7 @@ html {
         padding: 0 116px !important;
     }
 }
+
 /*Media qurey for modal*/
 @media only screen and (max-width:990px) {
     .modal-left {
@@ -670,4 +681,7 @@ html {
         .dialog-content .modal-right .submit-cta {
             width: 100%;
         }
-        }
+.modal-input-value {
+    width: 100%;
+}
+}

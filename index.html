@@ -7,6 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("xjESYu3ZTGCYzBBCG");
+        })();
+    </script>
     <title>Sample Page</title>
 </head>
 
@@ -25,21 +32,21 @@
                     <div class="selections row">
                         <div class="item d-flex flex-column col">
                             <label for="select">Select Technology</label>
-                            <select for="framework">
-                                <option value="" selected id="select">
+                            <select id="select-technology">
+                                <option value="Spring Boot Developer" selected>
                                     Spring Boot Developer
                                 </option>
-                                <option value="option2">Hibernate Developer</option>
-                                <option value="option3">JEE Developer</option>
-                                <option value="option4">Play Developer</option>
+                                <option value="Hibernate Developer">Hibernate Developer</option>
+                                <option value="JEE Developer">JEE Developer</option>
+                                <option value="Play Developer">Play Developer</option>
                             </select>
                         </div>
                         <div class="item d-flex flex-column col">
                             <label for="select">Select Expertise</label>
-                            <select for="experience">
-                                <option value="option2">Front End React</option>
-                                <option value="option3">Back End Developer</option>
-                                <option value="" selected id="select">
+                            <select id="select-expertise">
+                                <option value="Front End React">Front End React</option>
+                                <option value="Back End Developer">Back End Developer</option>
+                                <option value="Full Stack Angular" selected>
                                     Full Stack Angular
                                 </option>
                             </select>
@@ -47,13 +54,13 @@
 
                         <div class="item d-flex flex-column col">
                             <label for="select">Select Experience</label>
-                            <select for="experience">
-                                <option value="" id="select">
+                            <select id="select-experience">
+                                <option value="Juniour Developer selected">
                                     Juniour Developer
                                 </option>
-                                <option value="option2">Mid-leve Developer</option>
-                                <option value="option3" selected>Senior Developer</option>
-                                <option value="option4">Lead Developer</option>
+                                <option value="Mid-leve Developer">Mid-leve Developer</option>
+                                <option value="Senior Developer">Senior Developer</option>
+                                <option value="Lead Developer">Lead Developer</option>
                             </select>
                         </div>
                     </div>
@@ -66,7 +73,7 @@
                         </div>
 
                         <div class="actions d-flex">
-                            <button class="filter">Apply Filter</button>
+                            <button class="filter" id="filter-button">Apply Filter</button>
                             <button class="down-pdf ml-4" data-toggle="modal" data-target="#exampleModalCenter">Download
                                 Pdf</button>
                         </div>
@@ -74,7 +81,7 @@
                     <div class="cv">
                         <div class="content">
                             <div class="header">
-                                <h1>Full-stack Java Developer</h1>
+                                <h1 id="selected-technology"></h1>
                                 <p>Experience in Java development: 7 years</p>
                             </div>
                             <div class="cv-content-heading">
@@ -128,7 +135,9 @@
                             <div class="cv-content-heading">
                                 <h3>TECHNICAL SKILLS</h3>
                                 <div class="skill-main row">
-                                    <div class="item col-xl-6">
+                                    <div id="skill-list-bed"></div>
+                                    <div id="skill-list-fed"> </div>
+                                    <!-- <div class="item col-xl-6">
                                         <div class="skill-heading">
                                             <h6>Java Technologies</h6>
                                         </div>
@@ -191,7 +200,7 @@
                                         <div class="skill-paragraph">
                                             <p>JavaScript, jQuery, Angular2-5, Node.JS, React JS.</p>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="cv-content-heading">
@@ -271,7 +280,8 @@
                                 <div class="professional-exp-box-2">
                                     <div class="overlay"></div>
                                     <h5>Responsibilities</h5>
-                                    <ul>
+                                    <ul id="list-items"></ul>
+                                    <!-- <ul>
                                         <li>
                                             Extensively worked on Spring Microservices
                                         </li>
@@ -300,7 +310,7 @@
                                         <li>
                                             Communication with clients to take the requirement.
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </div>
                             </div>
                             <div class="containers">
@@ -324,7 +334,7 @@
                         <p class="title">
                             Skills
                         </p>
-                        <input class="search"
+                        <input class="search" id="input-box"
                             placeholder="Search for desired areas of expertise ( e.g., JavaScript, NodeJS, and etc. )">
 
                         </input>
@@ -399,7 +409,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="cta">
+                    <button class="cta" id="nextButton" data-toggle="modal" data-target="#exampleModalCenter" disabled="true">
                         Next
                     </button>
                 </div>
@@ -472,15 +482,15 @@
                                     <p>We will be sending you a Mail with downloadable Resume of
                                         Developers.</p>
                                 </div>
-                                <!-- <div class="modal-content-input">
+                                <div class="modal-content-input" class="form-group">
                                  <label for="">Full Name</label>
-                                 <input type="text" placeholder="Enter your Name" />
+                                <input type="text" placeholder="Enter your Name" id="name" class="form-control" />
                              </div>
-                             <div class="modal-content-input">
-                                 <label for="">Email ID</label>
-                                 <input type="text" placeholder="Enter your Email (eg. name@gmail.com)" />
-                             </div> -->
-                                <div class="modal-input-value">
+                            <div class="modal-content-input form-group" class="form-group">
+                                <label for="">Email ID</label>
+                                <input type="text" placeholder="Enter your Email (eg. name@gmail.com)" id="email" class="form-control" />
+                                </div>
+                                <!-- <div class="modal-input-value">
                                     <script charset="utf-8" type="text/javascript"
                                         src="//js.hsforms.net/forms/embed/v2.js"></script>
                                     <script>
@@ -490,8 +500,8 @@
                                             formId: "da440490-c3c2-4f1e-b228-6132173028a0"
                                         });
                                     </script>
-                                </div>
-                                <!-- <button type="button" class="submit-cta">Submit</button> -->
+                                </div> -->
+                                <button class="submit-cta" onclick="sendEmail()">Submit</button>
                             </div>
                             <!--<button class="modal-btn">Submit</button> -->
                         </div>

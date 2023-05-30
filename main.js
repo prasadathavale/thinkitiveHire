@@ -1,35 +1,7 @@
 // Get the necessary elements
-//  const previewButton = document.getElementById("preview-button");
 const modalOverlay = document.getElementById("modal-overlay");
 const continueBtn = document.querySelector('.cta')
 const visibleOn = document.getElementById('visibleOn');
-// const cancelButton = document.getElementById("cancel-button"); 
-
-// Function to show the modal
-//  function showModal() {
-//    console.log("Modal");
-//    modalOverlay.style.display = "block";
-//  }
-
-// Function to hide the modal
-//  function hideModal() {
-//    modalOverlay.style.display = "none";
-//  }
-
-// Event listener for the preview button click
-//  previewButton.addEventListener("click", showModal);
-
-// Event listener for clicking outside the modal to close it
-//  modalOverlay.addEventListener("click", function (event) {
-//    if (event.target === modalOverlay) {
-//      hideModal();
-//    }
-//  });
-
-
-//  cancelButton.addEventListener("click", hideModal);
-
-
 
 const languageContent = document.querySelectorAll(".chip");
 const selectedLanguages = [];
@@ -69,22 +41,29 @@ selectedLanguagesDiv.addEventListener("click", (event) => {
     displaySelectedLanguages();
   }
   toggleContinueButton(selectedLanguages);
-  //  visibleOn
 });
 
 
 // Add input box value as a selected language
-inputBox.addEventListener("keyup", (event) => {
-  if (event.keyCode === 13) { // Check if Enter key is pressed
+let inputTimeout;
+inputBox.addEventListener("input", (event) => {
+  clearTimeout(inputTimeout);
+
+  inputTimeout = setTimeout(() => {
     const language = inputBox.value.trim();
-    if (language !== "" && !selectedLanguages.includes(language)) {
-      selectedLanguages.push(language);
-      displaySelectedLanguages();
+    if (language !== "") {
+      if (!selectedLanguages.includes(language)) {
+        selectedLanguages.push(language);
+        displaySelectedLanguages();
+      }
       toggleContinueButton(selectedLanguages);
+      inputBox.value = "";
     }
-    inputBox.value = "";
-  }
+  }, 1000);
 });
+
+
+
 
 
 //Function to display  selected-languages
@@ -119,13 +98,6 @@ function toggleContinueButton(selectedLanguages) {
 
 
 
-
-
-
-
-
-
-
 /*Code For Drop-Down Selection Functionality*/
 
 // Get references to the select elements
@@ -140,24 +112,15 @@ const skillListBed = document.querySelector('#skill-list-bed');
 const skillsListFed = document.querySelector('#skill-list-fed');
 
 
-
-
 // Add click event listener to the filter button
 filterButton.addEventListener('click', updateResumeView);
 
-// Function to update the resume view based on the selected options
+
+//ACCORDING TO THREE SELECTIONS RESUME WILL UPDATED
 function updateResumeView() {
-  // Get the selected values from the select elements
   const selectedTechnology = technologySelect.value;
   const selectedExpertise = expertiseSelect.value;
   const selectedExperience = experienceSelect.value;
-
-  // Update the resume view based on the selected options
-  // Here, you can manipulate the DOM or perform any other actions based on the selected options
-  // For simplicity, let's just log the selected options to the console
-  // console.log('Selected Technology:', selectedTechnology);
-  // console.log('Selected Expertise:', selectedExpertise);
-  // console.log('Selected Experience:', selectedExperience);
 
   document.getElementById('selected-technology').textContent = selectedTechnology;
 
@@ -181,7 +144,6 @@ function updateResumeView() {
 
   //2 ADDED SKILLS USING BACK END DEVELOPER SKILLS
   if (selectedExpertise === 'Back End Developer') {
-    // Display JSON data in the skill-list element
     const jsonData = [
       { "heading": "Java Technologies", "paragraph": "Java, Collection, JEE, JDBC, Servlets, JSP, JSTL, JavaBeans and EJB" },
       { "heading": "Messaging Systems", "paragraph": "JMS (Java Messaging Service, RabbitMQ)" },
@@ -193,30 +155,48 @@ function updateResumeView() {
       { "heading": "Scripting languages", "paragraph": "JavaScript, jQuery, Angular2-5, Node.JS, React JS." }
     ];
 
-    // Generate HTML content from JSON data
-    const htmlContent = jsonData.map(item => `
-      <div class="item col-xl-6">
-        <div class="skill-heading">
-          <h6>${item.heading}</h6>
-          </div>  
+    const pairs = [];
+    for (let i = 0; i < jsonData.length; i += 2) {
+      const pair = jsonData.slice(i, i + 2);
+      pairs.push(pair);
+    }
+
+    const htmlContent = pairs.map(pair => `
+    <div class="row">
+      <div class="col-xl-6">
+        <div class="item">
+          <div class="skill-heading">
+            <h6>${pair[0].heading}</h6>
+          </div>
           <div class="skill-paragraph">
-            <p>${item.paragraph}</p>
+            <p>${pair[0].paragraph}</p>
           </div>
         </div>
-      `).join('');
-
-    // Update the skill-list element with the generated HTML content
+      </div>
+      ${pair[1] ? `
+        <div class="col-xl-6">
+          <div class="item">
+            <div class="skill-heading">
+              <h6>${pair[1].heading}</h6>
+            </div>
+            <div class="skill-paragraph">
+              <p>${pair[1].paragraph}</p>
+            </div>
+          </div>
+        </div>
+      ` : ''}
+    </div>
+  `).join('');
     skillListBed.innerHTML = htmlContent;
   } else {
-    // Clear the skill-list element if the selected expertise is not "Back End Developer"
     skillListBed.innerHTML = '';
   }
 
 
 
+
   //3 AFTER SELECTION OF FRONT END REACT DEVELOPERS
   if (selectedExpertise === 'Front End React') {
-    // Display JSON data in the skill-list element
     const jsonData = [
       { "heading": "HTML/CSS", "paragraph": "HTML5, CSS3, SASS/SCSS, Bootstrap" },
       { "heading": "JavaScript", "paragraph": "ES6+, DOM Manipulation, AJAX, JSON" },
@@ -228,7 +208,6 @@ function updateResumeView() {
       { "heading": "Cross-Browser Compatibility", "paragraph": "Browser Testing, Polyfills" },
     ];
 
-    // Generate HTML content from JSON data
     const htmlContent = jsonData.map(item => `
       <div class="item col">
         <div class="skill-heading">
@@ -240,10 +219,8 @@ function updateResumeView() {
       </div>
     `).join('');
 
-    // Update the skill-list element with the generated HTML content
     skillsListFed.innerHTML = htmlContent;
   } else {
-    // Clear the skill-list element if the selected expertise is not "Front End React"
     skillsListFed.innerHTML = '';
   }
 
@@ -252,47 +229,92 @@ updateResumeView();
 
 
 
-
-
-
-
-
-//SENDING EMAIL USING EMAIL-JS FUNCTIONALITY
+//SEND EMAIL FUNCTIONALITY 
 function sendEmail() {
   var name = document.getElementById("name").value;
   var email = document.getElementById("email").value;
 
-  var languagesString = "";
-  if (selectedLanguages.length > 0) {
-    languagesString = selectedLanguages.join(", ");
-  }
-
   var param = {
     name: name,
-    email: email,
-    languages: languagesString
+    email: email
   };
-  console.log(param);
-  console.log(selectedLanguages);
 
+  if (selectedLanguages.length > 0) {
+    var languagesString = selectedLanguages.join(", ");
+    param.languages = languagesString;
+  } else {
+    var selectedTechnology = document.querySelector('#select-technology').value;
+    var selectedExpertise = document.querySelector('#select-expertise').value;
+    var selectedExperience = document.querySelector('#select-experience').value;
+
+    param.technology = selectedTechnology;
+    param.expertise = selectedExpertise;
+    param.experience = selectedExperience;
+  }
 
   const serviceID = "service_2n8pfnq";
-  const templateID = "template_pf12cr8";
+  const templateID = "template_sputc17";
 
-  emailjs.send(serviceID, templateID, param)
-    .then((res) => {
-      document.getElementById("name").value = "";
-      document.getElementById("email").value = "";
-      // alert("Email sent successfully");
-    }).catch((err) => console.log(err));
-
-  closeModal();
+  if (name && email) {
+    emailjs.send(serviceID, templateID, param)
+      .then((res) => {
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        closeModal();
+        selectedLanguages.length = 0;
+        displaySelectedLanguages();
+        toggleContinueButton(selectedLanguages);
+        toggleSubmitButton();
+        alert("Email sent successfully");
+      }).catch((err) => console.log(err));
+  } else {
+    alert("Please fill in both name and email fields.");
+  }
 }
+
+
+
+
+
+//CHANGE SUBMIT BUTTON STYLE
+function toggleSubmitButton() {
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var submitButton = document.getElementById("submitBtn");
+
+  if (name && email) {
+    submitButton.style.backgroundColor = "#095592";
+    submitButton.style.color = "white";
+    submitButton.disabled = false;
+  } else {
+    submitButton.style.backgroundColor = "";
+    submitButton.style.color = "";
+    submitButton.disabled = true;
+  }
+}
+
+var nameInput = document.getElementById("name");
+var emailInput = document.getElementById("email");
+
+nameInput.addEventListener("input", toggleSubmitButton);
+emailInput.addEventListener("input", toggleSubmitButton);
+
+
 
 //CLOSING MODAL AFTER SENDING EMAIL
 function closeModal() {
   $('#exampleModalCenter').modal('hide');
+  selectedLanguages.length = 0;
+  displaySelectedLanguages();
 }
+
+
+//CALL THE CLOSEMODAL FUNCTION TO CLOSE THE MODAL AND RESET SELECTED LANGUAGES
+document.querySelector('.close').addEventListener('click', function () {
+  closeModal();
+  continueBtn.classList.remove('active');
+  document.getElementById("nextButton").disabled = true;
+});
 
 
 
